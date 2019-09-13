@@ -26,4 +26,10 @@ public interface ICameraService {
      * @return
      */
     List<Map<String, Map<String, Object>>> categoryJoinTotal();
+
+    /**
+     * 上周新增接入数量
+     * @return
+     */
+    int getLastWeekTotal();
 }

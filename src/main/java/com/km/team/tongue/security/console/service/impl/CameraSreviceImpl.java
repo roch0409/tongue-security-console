@@ -72,6 +72,11 @@ public class CameraSreviceImpl implements ICameraService {
         return list;
     }
 
+    @Override
+    public int getLastWeekTotal() {
+        return mapperCustom.getLastWeekTotal(null);
+    }
+
     private Map<String, Object> calc(String key) {
         Map<String, Object> map = new HashMap<>();
         int currentWeekTotal = mapperCustom.getCurrentWeekTotal(key);

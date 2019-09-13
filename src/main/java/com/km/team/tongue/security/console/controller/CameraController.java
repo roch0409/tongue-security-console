@@ -45,12 +45,14 @@ public class CameraController extends BaseController<CameraController> {
     @GetMapping("categoryJoinTotal")
     public ResponseData categoryJoinTotal() {
         List<Map<String, Map<String, Object>>> maps = cameraService.categoryJoinTotal();
-        int lastWeekTotal = orgService.getLastWeekTotal();
+        int lastWeekOrgTotal = orgService.getLastWeekTotal();
+        int lastWeekCameraTotal = cameraService.getLastWeekTotal();
         Map<String, Object> map = new HashMap<>();
         // 分类统计信息
         map.put("categoryTotal", maps);
         // 近一周新增单位
-        map.put("lastWeekOrgTotal", lastWeekTotal);
+        map.put("lastWeekOrgTotal", lastWeekOrgTotal);
+        map.put("lastWeekCameraTotal", lastWeekCameraTotal);
         return ResponseDataUtil.buildSuccess(map);
     }
 
