@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.km.team.tongue.security.console.dao.mybatis.TcameraMapper">
+  <resultMap id="BaseResultMap" type="com.km.team.tongue.security.console.beans.pojo.Tcamera">
+    <id column="cam_id" jdbcType="VARCHAR" property="camId" />
+    <result column="cam_name" jdbcType="VARCHAR" property="camName" />
+    <result column="cam_org_id" jdbcType="VARCHAR" property="camOrgId" />
+    <result column="cam_org_name" jdbcType="VARCHAR" property="camOrgName" />
+    <result column="org_indexCode" jdbcType="VARCHAR" property="orgIndexcode" />
+    <result column="org_path" jdbcType="VARCHAR" property="orgPath" />
+    <result column="platform_id" jdbcType="INTEGER" property="platformId" />
+    <result column="ocx_id" jdbcType="VARCHAR" property="ocxId" />
+    <result column="device_indexCode" jdbcType="VARCHAR" property="deviceIndexcode" />
+    <result column="play_type" jdbcType="VARCHAR" property="playType" />
+    <result column="play_val" jdbcType="VARCHAR" property="playVal" />
+    <result column="def_stream" jdbcType="VARCHAR" property="defStream" />
+    <result column="cameraType" jdbcType="INTEGER" property="cameratype" />
+    <result column="pixel" jdbcType="INTEGER" property="pixel" />
+    <result column="ptzType" jdbcType="INTEGER" property="ptztype" />
+    <result column="sound" jdbcType="VARCHAR" property="sound" />
+    <result column="cam_state" jdbcType="INTEGER" property="camState" />
+    <result column="cam_img" jdbcType="VARCHAR" property="camImg" />
+    <result column="is_cascade" jdbcType="INTEGER" property="isCascade" />
+    <result column="cascade_code" jdbcType="VARCHAR" property="cascadeCode" />
+    <result column="creat_time" jdbcType="VARCHAR" property="creatTime" />
+    <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
+    <result column="synch_time" jdbcType="VARCHAR" property="synchTime" />
+    <result column="access_type" jdbcType="VARCHAR" property="accessType" />
+    <result column="channel_no" jdbcType="INTEGER" property="channelNo" />
+    <result column="device_serial" jdbcType="VARCHAR" property="deviceSerial" />
+    <result column="is_encrypt" jdbcType="INTEGER" property="isEncrypt" />
+    <result column="verify_code" jdbcType="VARCHAR" property="verifyCode" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    cam_id, cam_name, cam_org_id, cam_org_name, org_indexCode, org_path, platform_id, 
+    ocx_id, device_indexCode, play_type, play_val, def_stream, cameraType, pixel, ptzType, 
+    sound, cam_state, cam_img, is_cascade, cascade_code, creat_time, update_time, synch_time, 
+    access_type, channel_no, device_serial, is_encrypt, verify_code
+  </sql>
+  <select id="selectByExample" parameterType="com.km.team.tongue.security.console.beans.pojo.TcameraExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tcamera
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tcamera
+    where cam_id = #{camId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tcamera
+    where cam_id = #{camId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.km.team.tongue.security.console.beans.pojo.TcameraExample">
+    delete from tcamera
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.km.team.tongue.security.console.beans.pojo.Tcamera">
+    insert into tcamera (cam_id, cam_name, cam_org_id, 
+      cam_org_name, org_indexCode, org_path, 
+      platform_id, ocx_id, device_indexCode, 
+      play_type, play_val, def_stream, 
+      cameraType, pixel, ptzType, 
+      sound, cam_state, cam_img, 
+      is_cascade, cascade_code, creat_time, 
+      update_time, synch_time, access_type, 
+      channel_no, device_serial, is_encrypt, 
+      verify_code)
+    values (#{camId,jdbcType=VARCHAR}, #{camName,jdbcType=VARCHAR}, #{camOrgId,jdbcType=VARCHAR}, 
+      #{camOrgName,jdbcType=VARCHAR}, #{orgIndexcode,jdbcType=VARCHAR}, #{orgPath,jdbcType=VARCHAR}, 
+      #{platformId,jdbcType=INTEGER}, #{ocxId,jdbcType=VARCHAR}, #{deviceIndexcode,jdbcType=VARCHAR}, 
+      #{playType,jdbcType=VARCHAR}, #{playVal,jdbcType=VARCHAR}, #{defStream,jdbcType=VARCHAR}, 
+      #{cameratype,jdbcType=INTEGER}, #{pixel,jdbcType=INTEGER}, #{ptztype,jdbcType=INTEGER}, 
+      #{sound,jdbcType=VARCHAR}, #{camState,jdbcType=INTEGER}, #{camImg,jdbcType=VARCHAR}, 
+      #{isCascade,jdbcType=INTEGER}, #{cascadeCode,jdbcType=VARCHAR}, #{creatTime,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=VARCHAR}, #{synchTime,jdbcType=VARCHAR}, #{accessType,jdbcType=VARCHAR}, 
+      #{channelNo,jdbcType=INTEGER}, #{deviceSerial,jdbcType=VARCHAR}, #{isEncrypt,jdbcType=INTEGER}, 
+      #{verifyCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.km.team.tongue.security.console.beans.pojo.Tcamera">
+    insert into tcamera
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="camId != null">
+        cam_id,
+      </if>
+      <if test="camName != null">
+        cam_name,
+      </if>
+      <if test="camOrgId != null">
+        cam_org_id,
+      </if>
+      <if test="camOrgName != null">
+        cam_org_name,
+      </if>
+      <if test="orgIndexcode != null">
+        org_indexCode,
+      </if>
+      <if test="orgPath != null">
+        org_path,
+      </if>
+      <if test="platformId != null">
+        platform_id,
+      </if>
+      <if test="ocxId != null">
+        ocx_id,
+      </if>
+      <if test="deviceIndexcode != null">
+        device_indexCode,
+      </if>
+      <if test="playType != null">
+        play_type,
+      </if>
+      <if test="playVal != null">
+        play_val,
+      </if>
+      <if test="defStream != null">
+        def_stream,
+      </if>
+      <if test="cameratype != null">
+        cameraType,
+      </if>
+      <if test="pixel != null">
+        pixel,
+      </if>
+      <if test="ptztype != null">
+        ptzType,
+      </if>
+      <if test="sound != null">
+        sound,
+      </if>
+      <if test="camState != null">
+        cam_state,
+      </if>
+      <if test="camImg != null">
+        cam_img,
+      </if>
+      <if test="isCascade != null">
+        is_cascade,
+      </if>
+      <if test="cascadeCode != null">
+        cascade_code,
+      </if>
+      <if test="creatTime != null">
+        creat_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="synchTime != null">
+        synch_time,
+      </if>
+      <if test="accessType != null">
+        access_type,
+      </if>
+      <if test="channelNo != null">
+        channel_no,
+      </if>
+      <if test="deviceSerial != null">
+        device_serial,
+      </if>
+      <if test="isEncrypt != null">
+        is_encrypt,
+      </if>
+      <if test="verifyCode != null">
+        verify_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="camId != null">
+        #{camId,jdbcType=VARCHAR},
+      </if>
+      <if test="camName != null">
+        #{camName,jdbcType=VARCHAR},
+      </if>
+      <if test="camOrgId != null">
+        #{camOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="camOrgName != null">
+        #{camOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgIndexcode != null">
+        #{orgIndexcode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgPath != null">
+        #{orgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="platformId != null">
+        #{platformId,jdbcType=INTEGER},
+      </if>
+      <if test="ocxId != null">
+        #{ocxId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceIndexcode != null">
+        #{deviceIndexcode,jdbcType=VARCHAR},
+      </if>
+      <if test="playType != null">
+        #{playType,jdbcType=VARCHAR},
+      </if>
+      <if test="playVal != null">
+        #{playVal,jdbcType=VARCHAR},
+      </if>
+      <if test="defStream != null">
+        #{defStream,jdbcType=VARCHAR},
+      </if>
+      <if test="cameratype != null">
+        #{cameratype,jdbcType=INTEGER},
+      </if>
+      <if test="pixel != null">
+        #{pixel,jdbcType=INTEGER},
+      </if>
+      <if test="ptztype != null">
+        #{ptztype,jdbcType=INTEGER},
+      </if>
+      <if test="sound != null">
+        #{sound,jdbcType=VARCHAR},
+      </if>
+      <if test="camState != null">
+        #{camState,jdbcType=INTEGER},
+      </if>
+      <if test="camImg != null">
+        #{camImg,jdbcType=VARCHAR},
+      </if>
+      <if test="isCascade != null">
+        #{isCascade,jdbcType=INTEGER},
+      </if>
+      <if test="cascadeCode != null">
+        #{cascadeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null">
+        #{creatTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="synchTime != null">
+        #{synchTime,jdbcType=VARCHAR},
+      </if>
+      <if test="accessType != null">
+        #{accessType,jdbcType=VARCHAR},
+      </if>
+      <if test="channelNo != null">
+        #{channelNo,jdbcType=INTEGER},
+      </if>
+      <if test="deviceSerial != null">
+        #{deviceSerial,jdbcType=VARCHAR},
+      </if>
+      <if test="isEncrypt != null">
+        #{isEncrypt,jdbcType=INTEGER},
+      </if>
+      <if test="verifyCode != null">
+        #{verifyCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.km.team.tongue.security.console.beans.pojo.TcameraExample" resultType="java.lang.Long">
+    select count(*) from tcamera
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tcamera
+    <set>
+      <if test="record.camId != null">
+        cam_id = #{record.camId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camName != null">
+        cam_name = #{record.camName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camOrgId != null">
+        cam_org_id = #{record.camOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camOrgName != null">
+        cam_org_name = #{record.camOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgIndexcode != null">
+        org_indexCode = #{record.orgIndexcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgPath != null">
+        org_path = #{record.orgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platformId != null">
+        platform_id = #{record.platformId,jdbcType=INTEGER},
+      </if>
+      <if test="record.ocxId != null">
+        ocx_id = #{record.ocxId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceIndexcode != null">
+        device_indexCode = #{record.deviceIndexcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.playType != null">
+        play_type = #{record.playType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.playVal != null">
+        play_val = #{record.playVal,jdbcType=VARCHAR},
+      </if>
+      <if test="record.defStream != null">
+        def_stream = #{record.defStream,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cameratype != null">
+        cameraType = #{record.cameratype,jdbcType=INTEGER},
+      </if>
+      <if test="record.pixel != null">
+        pixel = #{record.pixel,jdbcType=INTEGER},
+      </if>
+      <if test="record.ptztype != null">
+        ptzType = #{record.ptztype,jdbcType=INTEGER},
+      </if>
+      <if test="record.sound != null">
+        sound = #{record.sound,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camState != null">
+        cam_state = #{record.camState,jdbcType=INTEGER},
+      </if>
+      <if test="record.camImg != null">
+        cam_img = #{record.camImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isCascade != null">
+        is_cascade = #{record.isCascade,jdbcType=INTEGER},
+      </if>
+      <if test="record.cascadeCode != null">
+        cascade_code = #{record.cascadeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creatTime != null">
+        creat_time = #{record.creatTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.synchTime != null">
+        synch_time = #{record.synchTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accessType != null">
+        access_type = #{record.accessType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channelNo != null">
+        channel_no = #{record.channelNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.deviceSerial != null">
+        device_serial = #{record.deviceSerial,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isEncrypt != null">
+        is_encrypt = #{record.isEncrypt,jdbcType=INTEGER},
+      </if>
+      <if test="record.verifyCode != null">
+        verify_code = #{record.verifyCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tcamera
+    set cam_id = #{record.camId,jdbcType=VARCHAR},
+      cam_name = #{record.camName,jdbcType=VARCHAR},
+      cam_org_id = #{record.camOrgId,jdbcType=VARCHAR},
+      cam_org_name = #{record.camOrgName,jdbcType=VARCHAR},
+      org_indexCode = #{record.orgIndexcode,jdbcType=VARCHAR},
+      org_path = #{record.orgPath,jdbcType=VARCHAR},
+      platform_id = #{record.platformId,jdbcType=INTEGER},
+      ocx_id = #{record.ocxId,jdbcType=VARCHAR},
+      device_indexCode = #{record.deviceIndexcode,jdbcType=VARCHAR},
+      play_type = #{record.playType,jdbcType=VARCHAR},
+      play_val = #{record.playVal,jdbcType=VARCHAR},
+      def_stream = #{record.defStream,jdbcType=VARCHAR},
+      cameraType = #{record.cameratype,jdbcType=INTEGER},
+      pixel = #{record.pixel,jdbcType=INTEGER},
+      ptzType = #{record.ptztype,jdbcType=INTEGER},
+      sound = #{record.sound,jdbcType=VARCHAR},
+      cam_state = #{record.camState,jdbcType=INTEGER},
+      cam_img = #{record.camImg,jdbcType=VARCHAR},
+      is_cascade = #{record.isCascade,jdbcType=INTEGER},
+      cascade_code = #{record.cascadeCode,jdbcType=VARCHAR},
+      creat_time = #{record.creatTime,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=VARCHAR},
+      synch_time = #{record.synchTime,jdbcType=VARCHAR},
+      access_type = #{record.accessType,jdbcType=VARCHAR},
+      channel_no = #{record.channelNo,jdbcType=INTEGER},
+      device_serial = #{record.deviceSerial,jdbcType=VARCHAR},
+      is_encrypt = #{record.isEncrypt,jdbcType=INTEGER},
+      verify_code = #{record.verifyCode,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.km.team.tongue.security.console.beans.pojo.Tcamera">
+    update tcamera
+    <set>
+      <if test="camName != null">
+        cam_name = #{camName,jdbcType=VARCHAR},
+      </if>
+      <if test="camOrgId != null">
+        cam_org_id = #{camOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="camOrgName != null">
+        cam_org_name = #{camOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgIndexcode != null">
+        org_indexCode = #{orgIndexcode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgPath != null">
+        org_path = #{orgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="platformId != null">
+        platform_id = #{platformId,jdbcType=INTEGER},
+      </if>
+      <if test="ocxId != null">
+        ocx_id = #{ocxId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceIndexcode != null">
+        device_indexCode = #{deviceIndexcode,jdbcType=VARCHAR},
+      </if>
+      <if test="playType != null">
+        play_type = #{playType,jdbcType=VARCHAR},
+      </if>
+      <if test="playVal != null">
+        play_val = #{playVal,jdbcType=VARCHAR},
+      </if>
+      <if test="defStream != null">
+        def_stream = #{defStream,jdbcType=VARCHAR},
+      </if>
+      <if test="cameratype != null">
+        cameraType = #{cameratype,jdbcType=INTEGER},
+      </if>
+      <if test="pixel != null">
+        pixel = #{pixel,jdbcType=INTEGER},
+      </if>
+      <if test="ptztype != null">
+        ptzType = #{ptztype,jdbcType=INTEGER},
+      </if>
+      <if test="sound != null">
+        sound = #{sound,jdbcType=VARCHAR},
+      </if>
+      <if test="camState != null">
+        cam_state = #{camState,jdbcType=INTEGER},
+      </if>
+      <if test="camImg != null">
+        cam_img = #{camImg,jdbcType=VARCHAR},
+      </if>
+      <if test="isCascade != null">
+        is_cascade = #{isCascade,jdbcType=INTEGER},
+      </if>
+      <if test="cascadeCode != null">
+        cascade_code = #{cascadeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null">
+        creat_time = #{creatTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="synchTime != null">
+        synch_time = #{synchTime,jdbcType=VARCHAR},
+      </if>
+      <if test="accessType != null">
+        access_type = #{accessType,jdbcType=VARCHAR},
+      </if>
+      <if test="channelNo != null">
+        channel_no = #{channelNo,jdbcType=INTEGER},
+      </if>
+      <if test="deviceSerial != null">
+        device_serial = #{deviceSerial,jdbcType=VARCHAR},
+      </if>
+      <if test="isEncrypt != null">
+        is_encrypt = #{isEncrypt,jdbcType=INTEGER},
+      </if>
+      <if test="verifyCode != null">
+        verify_code = #{verifyCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cam_id = #{camId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.km.team.tongue.security.console.beans.pojo.Tcamera">
+    update tcamera
+    set cam_name = #{camName,jdbcType=VARCHAR},
+      cam_org_id = #{camOrgId,jdbcType=VARCHAR},
+      cam_org_name = #{camOrgName,jdbcType=VARCHAR},
+      org_indexCode = #{orgIndexcode,jdbcType=VARCHAR},
+      org_path = #{orgPath,jdbcType=VARCHAR},
+      platform_id = #{platformId,jdbcType=INTEGER},
+      ocx_id = #{ocxId,jdbcType=VARCHAR},
+      device_indexCode = #{deviceIndexcode,jdbcType=VARCHAR},
+      play_type = #{playType,jdbcType=VARCHAR},
+      play_val = #{playVal,jdbcType=VARCHAR},
+      def_stream = #{defStream,jdbcType=VARCHAR},
+      cameraType = #{cameratype,jdbcType=INTEGER},
+      pixel = #{pixel,jdbcType=INTEGER},
+      ptzType = #{ptztype,jdbcType=INTEGER},
+      sound = #{sound,jdbcType=VARCHAR},
+      cam_state = #{camState,jdbcType=INTEGER},
+      cam_img = #{camImg,jdbcType=VARCHAR},
+      is_cascade = #{isCascade,jdbcType=INTEGER},
+      cascade_code = #{cascadeCode,jdbcType=VARCHAR},
+      creat_time = #{creatTime,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      synch_time = #{synchTime,jdbcType=VARCHAR},
+      access_type = #{accessType,jdbcType=VARCHAR},
+      channel_no = #{channelNo,jdbcType=INTEGER},
+      device_serial = #{deviceSerial,jdbcType=VARCHAR},
+      is_encrypt = #{isEncrypt,jdbcType=INTEGER},
+      verify_code = #{verifyCode,jdbcType=VARCHAR}
+    where cam_id = #{camId,jdbcType=VARCHAR}
+  </update>
+</mapper>

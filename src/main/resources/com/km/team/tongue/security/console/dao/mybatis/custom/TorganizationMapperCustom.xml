@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.km.team.tongue.security.console.dao.mybatis.custom.TorganizationMapperCustom">
+
+  <select id="getPreviousTotal" resultType="int">
+    <![CDATA[
+    select count(1)
+    from torganization t
+    where str_to_date(t.create_time, '%Y-%m-%d') < date_format(now(), '%Y-%m-%d') and t.is_enable=true
+    ]]>
+  </select>
+
+  <select id="getTodayTotal" resultType="int">
+    select count(1)
+    from torganization t
+    where str_to_date(t.create_time, '%Y-%m-%d') = date_format(now(), '%Y-%m-%d') and t.is_enable=true
+  </select>
+
+  <select id="getLastWeekTotal" resultType="int">
+    select count(1)
+    from torganization t
+    where t.is_enable=true
+    and yearweek(str_to_date(t.create_time, '%Y-%m-%d')) = yearweek(now())-1
+  </select>
+
+  <select id="getRealTimeOrgJoin" resultType="hashMap">
+    select t.org_name orgName,t.create_time createTime,
+        (select count(1) from tcamera c where c.cam_org_id=t.org_id and c.cam_state=1) onlineTotal,
+        (select count(1) from tcamera c where c.cam_org_id=t.org_id) total
+    from torganization t
+    where t.is_enable=true
+    order by t.create_time desc
+    limit 30
+  </select>
+
+  <select id="getRegionStatistics" resultType="hashMap">
+    select t.name,
+    (select count(1) from torganization o where o.region_path like concat(t.region_path, '%') and o.is_enable=true ) count
+    from tcontrolunitdto t
+    where t.unitLevel=2
+    order by count desc
+  </select>
+
+</mapper>
