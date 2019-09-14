@@ -23,7 +23,7 @@ public class WarningController extends BaseController<WarningController> {
      */
     @GetMapping("cook")
     public ResponseData getCookWarn() {
-        return ResponseDataUtil.buildError(messageService.getCookWarn());
+        return ResponseDataUtil.buildSuccess(messageService.getCookWarn());
     }
 
     /**
@@ -32,7 +32,7 @@ public class WarningController extends BaseController<WarningController> {
      */
     @GetMapping("degree")
     public ResponseData getDegreeWarn() {
-        return ResponseDataUtil.buildError(messageService.getDegreeWarn());
+        return ResponseDataUtil.buildSuccess(messageService.getDegreeWarn());
     }
 
     /**
@@ -41,6 +41,6 @@ public class WarningController extends BaseController<WarningController> {
      */
     @GetMapping("cabinet")
     public ResponseData getCabinetWarn() {
-        return ResponseDataUtil.buildError(messageService.getCabinetWarn());
+        return ResponseDataUtil.buildSuccess(messageService.getCabinetWarn());
     }
 }

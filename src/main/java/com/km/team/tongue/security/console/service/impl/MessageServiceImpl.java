@@ -46,7 +46,7 @@ public class MessageServiceImpl implements IMessageService {
         map.put("temperatureMap", temperatureMap);
         // 统计当天 持证上岗
         // TODO:没有类型id
-        HashMap<String, Object> certificateMap = mapperCustom.getTotal("");
+        HashMap<String, Object> certificateMap = mapperCustom.getTotal("131625");
         map.put("certificateMap",certificateMap);
         return map;
     }
@@ -56,13 +56,13 @@ public class MessageServiceImpl implements IMessageService {
         //TODO:补齐一下3中类型id
         Map<String, Map<String, Object>> map = new HashMap<>(3);
         // 消毒柜
-        HashMap<String, Object> disinfectionCabinetMap = mapperCustom.getTotal("");
+        HashMap<String, Object> disinfectionCabinetMap = mapperCustom.getTotal("131627");
         map.put("disinfectionCabinetMap", disinfectionCabinetMap);
         // 留样柜
-        HashMap<String, Object> sampleCabinetMap = mapperCustom.getTotal("");
+        HashMap<String, Object> sampleCabinetMap = mapperCustom.getTotal("131625");
         map.put("sampleCabinetMap", sampleCabinetMap);
         // 紫外灯
-        HashMap<String, Object> lampMap = mapperCustom.getTotal("");
+        HashMap<String, Object> lampMap = mapperCustom.getTotal("131625");
         map.put("lampMap",lampMap);
         return map;
     }
