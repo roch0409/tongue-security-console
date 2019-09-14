@@ -46,4 +46,9 @@
     from t_statistics t
   </select>
 
+  <select id="getTotalByUnitName" resultType="int" parameterType="String">
+    select count(1)
+    from torganization t
+    where t.controlUnitName=#{value} and t.is_enable=true
+  </select>
 </mapper>

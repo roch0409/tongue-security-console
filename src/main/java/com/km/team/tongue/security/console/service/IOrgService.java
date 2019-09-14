@@ -41,4 +41,11 @@ public interface IOrgService {
      * @return
      */
     List<HashMap<String, Object>> getCompanyRatio();
+
+    /**
+     * 根据分类名称统计
+     * @param name
+     * @return
+     */
+    Integer getTotalByUnitName(String name);
 }
