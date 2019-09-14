@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,6 +57,19 @@ public class OrgController extends BaseController<CameraController> {
         List<HashMap<String, Object>> companyRatio = orgService.getCompanyRatio();
         Map<String, Object> map = new HashMap<>(2);
         map.put("companyTotal", companyRatio);
+        Map<String, Object> ratioMap = new HashMap<>();
+        companyRatio.forEach(item -> {
+            String name = item.get("controlUnitName").toString();
+            Integer total = Integer.valueOf(item.get("count").toString());
+            Integer unitTotal = orgService.getTotalByUnitName(name);
+            // 创建一个数值格式化对象
+            NumberFormat numberFormat = NumberFormat.getInstance();
+            // 设置精确到小数点后2位
+            numberFormat.setMaximumFractionDigits(2);
+            String ratio = numberFormat.format((float)unitTotal/(float)(total)*100);
+            ratioMap.put(name, ratio);
+        });
+        map.put("companyRatio", ratioMap);
         return ResponseDataUtil.buildSuccess(map);
     }
 }

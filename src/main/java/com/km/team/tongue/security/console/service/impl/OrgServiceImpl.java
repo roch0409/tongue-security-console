@@ -50,4 +50,9 @@ public class OrgServiceImpl implements IOrgService {
     public List<HashMap<String, Object>> getCompanyRatio() {
         return mapperCustom.getCompanyRatio();
     }
+
+    @Override
+    public Integer getTotalByUnitName(String name) {
+        return mapperCustom.getTotalByUnitName(name);
+    }
 }
