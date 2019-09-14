@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Author: jiangjun
  * Date: 2019/9/9
@@ -49,6 +53,9 @@ public class OrgController extends BaseController<CameraController> {
      */
     @GetMapping("companyRatio")
     public ResponseData getCompanyRatio() {
-        return ResponseDataUtil.buildSuccess(orgService.getCompanyRatio());
+        List<HashMap<String, Object>> companyRatio = orgService.getCompanyRatio();
+        Map<String, Object> map = new HashMap<>(2);
+        map.put("companyTotal", companyRatio);
+        return ResponseDataUtil.buildSuccess(map);
     }
 }
