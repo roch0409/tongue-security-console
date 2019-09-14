@@ -41,4 +41,9 @@
     order by count desc
   </select>
 
+  <select id="getCompanyRatio" resultType="hashMap">
+    select t.controlUnitId,t.controlUnitName,t.count,t.provinceId
+    from t_statistics t
+  </select>
+
 </mapper>

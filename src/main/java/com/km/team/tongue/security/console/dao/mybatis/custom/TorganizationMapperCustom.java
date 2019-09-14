@@ -19,4 +19,10 @@ public interface TorganizationMapperCustom {
      * @return
      */
     List<HashMap<String, Object>> getRegionStatistics();
+
+    /**
+     * 各类餐饮企业占比统计
+     * @return
+     */
+    List<HashMap<String, Object>> getCompanyRatio();
 }
