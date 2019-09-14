@@ -45,4 +45,9 @@ public class OrgServiceImpl implements IOrgService {
     public List<HashMap<String, Object>> getRegionStatistics() {
         return mapperCustom.getRegionStatistics();
     }
+
+    @Override
+    public List<HashMap<String, Object>> getCompanyRatio() {
+        return mapperCustom.getCompanyRatio();
+    }
 }

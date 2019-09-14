@@ -41,6 +41,14 @@ public class OrgController extends BaseController<CameraController> {
     @GetMapping("region")
     public ResponseData getRegionStatistics() {
         return ResponseDataUtil.buildSuccess(orgService.getRegionStatistics());
+    }
 
+    /**
+     * 各类餐饮企业占比统计
+     * @return
+     */
+    @GetMapping("companyRatio")
+    public ResponseData getCompanyRatio() {
+        return ResponseDataUtil.buildSuccess(orgService.getCompanyRatio());
     }
 }
