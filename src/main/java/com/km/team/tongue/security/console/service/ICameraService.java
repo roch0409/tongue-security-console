@@ -32,4 +32,10 @@ public interface ICameraService {
      * @return
      */
     int getLastWeekTotal();
+
+    /**
+     * 近一周新增摄像头
+     * @return
+     */
+    Integer getWeekIncrTotal();
 }

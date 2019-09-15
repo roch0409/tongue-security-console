@@ -33,4 +33,10 @@ public interface TcameraMapperCustom {
      * @return
      */
     int getCategoryOfflineTotal(String key);
+
+    /**
+     * 近一周新增摄像头
+     * @return
+     */
+    Integer getWeekIncrTotal();
 }

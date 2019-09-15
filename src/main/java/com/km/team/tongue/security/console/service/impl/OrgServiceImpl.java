@@ -55,4 +55,9 @@ public class OrgServiceImpl implements IOrgService {
     public Integer getTotalByUnitName(String name) {
         return mapperCustom.getTotalByUnitName(name);
     }
+
+    @Override
+    public Integer getWeekIncrTotal() {
+        return mapperCustom.getWeekIncrTotal();
+    }
 }

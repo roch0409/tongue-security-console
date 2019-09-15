@@ -32,4 +32,10 @@ public interface TorganizationMapperCustom {
      * @return
      */
     Integer getTotalByUnitName(String name);
+
+    /**
+     * 近一周新增数量
+     * @return
+     */
+    Integer getWeekIncrTotal();
 }

@@ -32,7 +32,7 @@ public class RequestLogAspect {
     private final Logger logger = LoggerFactory.getLogger(RequestLogAspect.class);
 
     // 定义切点Pointcut
-    @Pointcut("execution(* com.km.team.phsystem.*.controller..*(..))")
+    @Pointcut("execution(* com.km.team.tongue.security.console.controller..*(..))")
     public void requestService() {
     }
 

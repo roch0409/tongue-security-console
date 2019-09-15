@@ -48,4 +48,10 @@ public interface IOrgService {
      * @return
      */
     Integer getTotalByUnitName(String name);
+
+    /**
+     * 近一周新增单位
+     * @return
+     */
+    Integer getWeekIncrTotal();
 }

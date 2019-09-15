@@ -72,4 +72,18 @@ public class OrgController extends BaseController<CameraController> {
         map.put("companyRatio", ratioMap);
         return ResponseDataUtil.buildSuccess(map);
     }
+
+    /**
+     * 近一周新增单位、摄像头
+     * @return
+     */
+    @GetMapping("weekIncrTotal")
+    public ResponseData getWeekIncrTotal() {
+        Integer orgIncrTotal = orgService.getWeekIncrTotal();
+        Integer cameraIncrTotal = cameraService.getWeekIncrTotal();
+        Map<String, Object> map = new HashMap<>(2);
+        map.put("orgIncrTotal", orgIncrTotal);
+        map.put("cameraIncrTotal", cameraIncrTotal);
+        return ResponseDataUtil.buildSuccess(map);
+    }
 }

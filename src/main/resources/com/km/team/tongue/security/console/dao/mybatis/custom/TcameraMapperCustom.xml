@@ -58,4 +58,11 @@
     and c.cam_state=0
   </select>
 
+  <select id="getWeekIncrTotal" resultType="int">
+      select count(1)
+      from tcamera c
+      where c.cam_state=0
+      and yearweek(str_to_date(c.creat_time, '%Y-%m-%d')) = yearweek(now())
+  </select>
+
 </mapper>
