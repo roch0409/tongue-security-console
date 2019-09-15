@@ -30,14 +30,14 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         registry.addResourceHandler("/api/**").addResourceLocations("classpath:/static/");
     }
 
-//    @Override
-//    public void addCorsMappings(CorsRegistry registry) {
-//        registry.addMapping("/**")
-//                .allowedOrigins("*")
-//                .allowedHeaders("*")
-//                .allowedOrigins("*")
-//                .allowCredentials(true)
-//                .allowedMethods("*")
-//                .maxAge(3600);
-//    }
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("*")
+                .allowedHeaders("*")
+                .allowedOrigins("*")
+                .allowCredentials(true)
+                .allowedMethods("*")
+                .maxAge(3600);
+    }
 }
