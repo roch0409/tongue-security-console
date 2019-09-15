@@ -1,6 +1,7 @@
 package com.km.team.tongue.security.console.dao.mybatis.custom;
 
 import java.util.HashMap;
+import java.util.List;
 
 public interface PushMessageMapperCustom {
 
@@ -10,4 +11,6 @@ public interface PushMessageMapperCustom {
      * @return
      */
     HashMap<String, Object> getTotal(String warnTypeId);
+
+    HashMap<String, Object> getTotalByListKey(List<String> listId);
 }

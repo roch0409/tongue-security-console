@@ -5,7 +5,9 @@ import com.km.team.tongue.security.console.service.IMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -45,8 +47,11 @@ public class MessageServiceImpl implements IMessageService {
         HashMap<String, Object> temperatureMap = mapperCustom.getTotal("131625");
         map.put("temperatureMap", temperatureMap);
         // 统计当天 持证上岗
-        // TODO:没有类型id
-        HashMap<String, Object> certificateMap = mapperCustom.getTotal("131625");
+        List<String> listId = new ArrayList<>(3);
+        listId.add("131668");
+        listId.add("131669");
+        listId.add("131672");
+        HashMap<String, Object> certificateMap = mapperCustom.getTotalByListKey(listId);
         map.put("certificateMap",certificateMap);
         return map;
     }
